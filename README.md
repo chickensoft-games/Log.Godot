@@ -38,7 +38,7 @@ For an overview of the logging system, see [Chickensoft.Log][chickensoft-log-gh]
 public class MyClass
 {
   // Create a log with the name of MyClass, outputting to the Godot debug console
-  private ILog _log = new Log(nameof(MyClass), [new GDWriter()]);
+  private ILog _log = new Log(nameof(MyClass), new GDWriter());
 }
 ```
 
@@ -60,8 +60,8 @@ public void MyMethod()
     }
     catch (Exception e)
     {
-      // Outputs the value of e.ToString(), prefixed by a line labeling it an exception,
-      // as an error
+      // Outputs the value of e.ToString(), prefixed by a line labeling it an
+      // exception, as an error
       _log.Print(e);
     }
 
@@ -92,7 +92,7 @@ Create a log that outputs messages to the default filename `"user://output.log"`
 ```csharp
 public class MyClass
 {
-  private ILog _log = new Log(nameof(MyClass), [GDFileWriter.Instance()]);
+  private ILog _log = new Log(nameof(MyClass), GDFileWriter.Instance());
 }
 ```
 
@@ -102,7 +102,8 @@ Create a log that outputs messages to a custom filename:
 ```csharp
 public class MyClass
 {
-  private ILog _log = new Log(nameof(MyClass), [GDFileWriter.Instance("user://CustomFileName.log")]);
+  private ILog _log = new Log(nameof(MyClass),
+    GDFileWriter.Instance("user://CustomFileName.log"));
 }
 ```
 
@@ -121,12 +122,13 @@ public class Entry
 
 public class MyClass
 {
-  private ILog _log = new Log(nameof(MyClass), [GDFileWriter.Instance()]);
+  private ILog _log = new Log(nameof(MyClass), GDFileWriter.Instance());
 }
 ```
 
 > [!WARNING]
-> Changing the default value for the log file name will affect newly-created `GDFileWriter`s, but will not affect ones that already exist.
+> Changing the default value for the log file name will affect newly-created
+> `GDFileWriter`s, but will not affect ones that already exist.
 
 ## 💁 Getting Help
 
