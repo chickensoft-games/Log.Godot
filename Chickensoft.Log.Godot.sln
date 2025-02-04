@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chickensoft.Log.Godot", "Chickensoft.Log.Godot\Chickensoft.Log.Godot.csproj", "{5993F953-38B8-4E88-858F-A4C488DF1543}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chickensoft.Log.Godot.Tests", "Chickensoft.Log.Godot.Tests\Chickensoft.Log.Godot.Tests.csproj", "{41E84004-7FFA-426A-B92C-AFA66CE3FE82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5993F953-38B8-4E88-858F-A4C488DF1543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5993F953-38B8-4E88-858F-A4C488DF1543}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5993F953-38B8-4E88-858F-A4C488DF1543}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5993F953-38B8-4E88-858F-A4C488DF1543}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41E84004-7FFA-426A-B92C-AFA66CE3FE82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41E84004-7FFA-426A-B92C-AFA66CE3FE82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41E84004-7FFA-426A-B92C-AFA66CE3FE82}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{41E84004-7FFA-426A-B92C-AFA66CE3FE82}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+EndGlobal
