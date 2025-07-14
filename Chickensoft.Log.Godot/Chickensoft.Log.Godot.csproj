@@ -48,6 +48,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="GodotSharp" Version="4.4.1" />
-    <PackageReference Include="Chickensoft.Log" Version="1.0.12" />
+    <PackageReference Include="Chickensoft.Log" Version="1.0.13" />
   </ItemGroup>
 </Project>
