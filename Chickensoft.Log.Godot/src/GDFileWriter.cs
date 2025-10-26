@@ -7,16 +7,19 @@ using global::Godot;
 /// <summary>
 /// An <see cref="ILogWriter"/> that directs output to a file via Godot's I/O.
 /// </summary>
-public sealed class GDFileWriter : ILogWriter {
+public sealed class GDFileWriter : ILogWriter
+{
   [ExcludeFromCodeCoverage(Justification = "Godot file I/O is untestable")]
-  internal static void GDAppendFileText(string path, string text) {
+  internal static void GDAppendFileText(string path, string text)
+  {
     using var file = FileAccess.Open(path, FileAccess.ModeFlags.ReadWrite);
     file.SeekEnd();
     file.StoreLine(text);
   }
 
   [ExcludeFromCodeCoverage(Justification = "Godot file I/O is untestable")]
-  internal static void GDCreateFile(string path) {
+  internal static void GDCreateFile(string path)
+  {
     using var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
   }
 
@@ -57,14 +60,19 @@ public sealed class GDFileWriter : ILogWriter {
   /// outputting to the new default, but previously-created instances will not
   /// be changed and will continue outputting to the original default file.
   /// </remarks>
-  public static string DefaultFileName {
-    get {
-      lock (_singletonLock) {
+  public static string DefaultFileName
+  {
+    get
+    {
+      lock (_singletonLock)
+      {
         return _defaultFileName;
       }
     }
-    set {
-      lock (_singletonLock) {
+    set
+    {
+      lock (_singletonLock)
+      {
         _defaultFileName = value;
       }
     }
@@ -89,9 +97,12 @@ public sealed class GDFileWriter : ILogWriter {
   /// <paramref name="fileName"/> already exists, it will erased; if not, it
   /// will be created.
   /// </remarks>
-  public static GDFileWriter Instance(string fileName) {
-    lock (_singletonLock) {
-      if (_instances.TryGetValue(fileName, out var writer)) {
+  public static GDFileWriter Instance(string fileName)
+  {
+    lock (_singletonLock)
+    {
+      if (_instances.TryGetValue(fileName, out var writer))
+      {
         return writer;
       }
       writer = new GDFileWriter(fileName);
@@ -110,8 +121,10 @@ public sealed class GDFileWriter : ILogWriter {
   /// </returns>
   /// <seealso cref="Instance(string)"/>
   /// <seealso cref="DefaultFileName"/>
-  public static GDFileWriter Instance() {
-    lock (_singletonLock) {
+  public static GDFileWriter Instance()
+  {
+    lock (_singletonLock)
+    {
       return Instance(DefaultFileName);
     }
   }
@@ -124,9 +137,12 @@ public sealed class GDFileWriter : ILogWriter {
   /// <param name="fileName">Filename for the log.</param>
   /// <returns>The file writer, if one existed for the given filename.
   /// Otherwise, just null.</returns>
-  public static GDFileWriter? Remove(string fileName) {
-    lock (_singletonLock) {
-      if (_instances.TryGetValue(fileName, out var writer)) {
+  public static GDFileWriter? Remove(string fileName)
+  {
+    lock (_singletonLock)
+    {
+      if (_instances.TryGetValue(fileName, out var writer))
+      {
         _instances.Remove(fileName);
         return writer;
       }
@@ -141,32 +157,30 @@ public sealed class GDFileWriter : ILogWriter {
   /// </summary>
   public string FileName { get; }
 
-  private GDFileWriter(string fileName) {
+  private GDFileWriter(string fileName)
+  {
     FileName = fileName;
-    lock (_writingLock) {
+    lock (_writingLock)
+    {
       // Clear the file
       CreateFile(FileName);
     }
   }
 
-  private void WriteLine(string message) {
-    lock (_writingLock) {
+  private void WriteLine(string message)
+  {
+    lock (_writingLock)
+    {
       AppendText(FileName, message);
     }
   }
 
   /// <inheritdoc/>
-  public void WriteError(string message) {
-    WriteLine(message);
-  }
+  public void WriteError(string message) => WriteLine(message);
 
   /// <inheritdoc/>
-  public void WriteMessage(string message) {
-    WriteLine(message);
-  }
+  public void WriteMessage(string message) => WriteLine(message);
 
   /// <inheritdoc/>
-  public void WriteWarning(string message) {
-    WriteLine(message);
-  }
+  public void WriteWarning(string message) => WriteLine(message);
 }

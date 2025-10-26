@@ -6,25 +6,27 @@ using Chickensoft.GoDotTest;
 using global::Godot;
 using Shouldly;
 
-public class GDFileWriterStreamTester : IDisposable {
+public class GDFileWriterStreamTester : IDisposable
+{
   private bool _isDisposed;
   private readonly StringBuilder _sb;
 
   public GDFileWriterStreamTester(
     string filename = GDFileWriter.DEFAULT_FILE_NAME
-  ) {
+  )
+  {
     _sb = new StringBuilder();
 
     GDFileWriter.AppendText = (_, message) => _sb.AppendLine(message);
     GDFileWriter.CreateFile = (_) => _sb.Clear();
   }
 
-  public string GetString() {
-    return _sb.ToString();
-  }
+  public string GetString() => _sb.ToString();
 
-  public void Dispose() {
-    if (_isDisposed) { return; }
+  public void Dispose()
+  {
+    if (_isDisposed)
+    { return; }
 
     GC.SuppressFinalize(this);
     _isDisposed = true;
@@ -34,12 +36,15 @@ public class GDFileWriterStreamTester : IDisposable {
   }
 }
 
-public class GDFileWriterTest : TestClass {
-  public GDFileWriterTest(Node testScene) : base(testScene) {
+public class GDFileWriterTest : TestClass
+{
+  public GDFileWriterTest(Node testScene) : base(testScene)
+  {
   }
 
   [Test]
-  public void DefaultFileName() {
+  public void DefaultFileName()
+  {
     GDFileWriter.DefaultFileName.ShouldBe(GDFileWriter.DEFAULT_FILE_NAME);
 
     var filename = "test.log";
@@ -50,7 +55,8 @@ public class GDFileWriterTest : TestClass {
   }
 
   [Test]
-  public void DefaultInstance() {
+  public void DefaultInstance()
+  {
     using var tester = new GDFileWriterStreamTester();
     var writer = GDFileWriter.Instance();
     writer.ShouldNotBeNull();
@@ -58,7 +64,8 @@ public class GDFileWriterTest : TestClass {
   }
 
   [Test]
-  public void NewInstance() {
+  public void NewInstance()
+  {
     using var tester = new GDFileWriterStreamTester();
     var filename = "test.log";
     var writer = GDFileWriter.Instance(filename);
@@ -67,7 +74,8 @@ public class GDFileWriterTest : TestClass {
   }
 
   [Test]
-  public void ReusesInstanceAndRemoves() {
+  public void ReusesInstanceAndRemoves()
+  {
     using var tester = new GDFileWriterStreamTester();
     var filename = "test.log";
     var writer1 = GDFileWriter.Instance(filename);
@@ -79,7 +87,8 @@ public class GDFileWriterTest : TestClass {
   }
 
   [Test]
-  public void WriteMessage() {
+  public void WriteMessage()
+  {
     using var tester = new GDFileWriterStreamTester();
 
     var writer = GDFileWriter.Instance();
@@ -91,7 +100,8 @@ public class GDFileWriterTest : TestClass {
   }
 
   [Test]
-  public void WriteWarning() {
+  public void WriteWarning()
+  {
     using var tester = new GDFileWriterStreamTester();
 
     var writer = GDFileWriter.Instance();
@@ -103,7 +113,8 @@ public class GDFileWriterTest : TestClass {
   }
 
   [Test]
-  public void WriteError() {
+  public void WriteError()
+  {
     using var tester = new GDFileWriterStreamTester();
 
     var writer = GDFileWriter.Instance();

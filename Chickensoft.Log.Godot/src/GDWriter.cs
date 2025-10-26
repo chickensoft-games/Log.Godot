@@ -21,20 +21,21 @@ using global::Godot;
 /// </para>
 /// </remarks>
 [ExcludeFromCodeCoverage(Justification = "Godot output is untestable")]
-public sealed class GDWriter : ILogWriter {
+public sealed class GDWriter : ILogWriter
+{
   /// <inheritdoc/>
-  public void WriteError(string message) {
+  public void WriteError(string message)
+  {
     GD.PushError(message);
     WriteMessage(message);
   }
 
   /// <inheritdoc/>
-  public void WriteMessage(string message) {
-    GD.Print(message);
-  }
+  public void WriteMessage(string message) => GD.Print(message);
 
   /// <inheritdoc/>
-  public void WriteWarning(string message) {
+  public void WriteWarning(string message)
+  {
     GD.PushWarning(message);
     WriteMessage(message);
   }
